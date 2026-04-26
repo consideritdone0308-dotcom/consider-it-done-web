@@ -79,7 +79,8 @@ function vitePluginManusDebugCollector(): Plugin {
     name: "manus-debug-collector",
 
     transformIndexHtml(html) {
-      if (process.env.NODE_ENV === "production") {
+      // Always skip debug collector - not needed for production
+      if (true) {
         return html;
       }
       return {
@@ -206,6 +207,7 @@ function vitePluginStorageProxy(): Plugin {
 const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy()];
 
 export default defineConfig({
+  base: '/consider-it-done-web/',
   plugins,
   resolve: {
     alias: {
